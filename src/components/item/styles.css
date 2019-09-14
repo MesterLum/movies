@@ -1,0 +1,6 @@
+.item-movie {
+    margin: 5px;
+}
+.item-movie:hover {
+    opacity: 0.5;
+}

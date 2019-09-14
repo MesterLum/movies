@@ -28,13 +28,15 @@ export const dispatchGetMovies = () => dispatch => {
         dispatch(actionLoading())
         if (data.status === "1") {
             sweetalert2.fire('Tenemos un problema!', "No pudimos traer la información del servidor", "error")
+            dispatch(actionSetErrorMovies("Algo ha ido mal"))
         } else if (data.status === "0") {
-            console.log('aca', data)
+            dispatch(actionSetMovies(data.response.groups))
         }
         
     })
     .catch(error => {
         dispatch(actionLoading())
         sweetalert2.fire('Error interno!', "Error intentando traer la información, por favor intente mas tarde", "error")
+        dispatch(actionSetErrorMovies("Error de conexión"))
     })
 }

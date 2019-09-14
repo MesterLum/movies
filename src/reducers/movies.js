@@ -13,7 +13,8 @@ export default (state = initialState, action) => {
         case SET_MOVIES: {
             return {
                 ...state,
-                movies: action.movies
+                movies: action.movies,
+                error: ""
             }
         }
         case SET_ERROR_MOVIES: {
