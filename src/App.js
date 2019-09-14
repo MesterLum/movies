@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { connect } from 'react-redux'
+import Spinner from './components/spinner'
+import PropTypes from 'prop-types'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App = ({ loading }) => (
+    <div>
+        <Spinner loading={loading} />
+        <h4>Hola</h4>
     </div>
-  );
+)
+
+App.propTypes = {
+    loading: PropTypes.bool.isRequired
 }
 
-export default App;
+const mapStateToProps = state => ({
+    loading: state.app.loading
+})
+
+//const mapDispatchToProps
+
+export default connect(mapStateToProps)(App);
