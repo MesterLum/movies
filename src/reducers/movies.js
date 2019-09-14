@@ -1,17 +1,25 @@
 import {
-    LOADING
+    SET_MOVIES,
+    SET_ERROR_MOVIES
 } from '../actions/actionTypes'
 
 const initialState = {
-    loading: false
+    movies: [],
+    error: ""
 }
 
 export default (state = initialState, action) => {
     switch(action.type) {
-        case LOADING: {
+        case SET_MOVIES: {
             return {
                 ...state,
-                loading: action.loading || !state.loading
+                movies: action.movies
+            }
+        }
+        case SET_ERROR_MOVIES: {
+            return {
+                ...state,
+                error: action.error
             }
         }
         default: {
