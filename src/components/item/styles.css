@@ -4,3 +4,20 @@
 .item-movie:hover {
     opacity: 0.5;
 }
+
+@media only screen and (min-width: 721px) {
+    .image_vertical {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    .image_horizontal {
+        display: none;
+    }
+}
+
+.image_vertical {
+    width: 125px;
+    height: 188px;
+}
