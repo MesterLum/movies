@@ -7,6 +7,8 @@ import { dispatchGetMovies } from '../actions/movies'
 
 // Components
 import ItemPlay from '../components/item'
+import Filter from '../components/filter'
+import { getMoviesWithFilters } from '../selectors/filterMovies';
 
 class List extends React.Component {
 
@@ -17,16 +19,16 @@ class List extends React.Component {
 
     render() {
         const { error, movies } = this.props
-        
-        if (error) {
-            return <div className="alert alert-danger" role="alert">{error} </div>
-        } else if (movies.lenght === 0) {
-            return <div className="alert alert-warning" role="alert">No hay peliculas</div>
-        }
+        if (error) 
+            return <div className="alert alert-danger text-center" role="alert">{error} </div>
         return (
             <>
+                <Filter />
                 <div style={{ textAlign: 'center' }}>
                     {
+                        movies.length < 1 ? 
+                             <div style={{width: '50%', margin: '0 auto'}} className="alert alert-warning text-center" role="alert">No hay peliculas</div>
+                        :
                         movies.map((movie, index) => (
                             <ItemPlay
                                 key={index}
@@ -47,7 +49,8 @@ List.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    ...state.movies
+    ...state.movies,
+    movies: getMoviesWithFilters(state)
 })
 
 const mapDispatchToProps = dispatch => ({
