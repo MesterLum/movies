@@ -13,28 +13,28 @@ import { getMoviesWithFilters } from '../selectors/filterMovies';
 class List extends React.Component {
 
     componentDidMount = () => {
-        this.props.getMovies()
+        if (this.props.movies && this.props.movies.length < 1)
+            this.props.getMovies()
     }
-
 
     render() {
         const { error, movies } = this.props
-        if (error) 
+        if (error)
             return <div className="alert alert-danger text-center" role="alert">{error} </div>
         return (
             <>
                 <Filter />
-                <div style={{ textAlign: 'center' }}>
+                <div className="text-center">
                     {
-                        movies.length < 1 ? 
-                             <div style={{width: '50%', margin: '0 auto'}} className="alert alert-warning text-center" role="alert">No hay peliculas</div>
-                        :
-                        movies.map((movie, index) => (
-                            <ItemPlay
-                                key={index}
-                                movie={movie}
-                            />
-                        ))
+                        movies.length < 1 ?
+                            <div style={{ width: '50%', margin: '0 auto' }} className="alert alert-warning text-center" role="alert">No hay peliculas</div>
+                            :
+                            movies.map((movie, index) => (
+                                <ItemPlay
+                                    key={index}
+                                    movie={movie}
+                                />
+                            ))
                     }
                 </div>
             </>
@@ -49,7 +49,7 @@ List.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    ...state.movies,
+    error: state.movies.error,
     movies: getMoviesWithFilters(state)
 })
 

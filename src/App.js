@@ -5,7 +5,9 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import './App.css'
 
+// Routes
 import ListScreen from './screens/list'
+import MovieDetail from './screens/movie'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
@@ -16,6 +18,7 @@ const App = ({ loading }) => (
 
         <Router>
             <Route exact path="/" component={ListScreen}/>
+            <Route exact path="/movie/:groupId" component={MovieDetail}/>
         </Router>
     </div>
 )

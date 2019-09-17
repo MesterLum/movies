@@ -1,13 +1,17 @@
 import {
     SET_MOVIES,
     SET_ERROR_MOVIES,
-    FILTER_MOVIES
+    FILTER_MOVIES,
+    SET_MOVIE,
+    SET_ERROR_MOVIE
 } from '../actions/actionTypes'
 
 const initialState = {
     movies: [],
     error: "",
-    titleFilter: ""
+    titleFilter: "",
+    movie: {},
+    errorMovie: ""
 }
 
 export default (state = initialState, action) => {
@@ -23,6 +27,19 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 error: action.error
+            }
+        }
+        case SET_MOVIE: {
+            return {
+                ...state,
+                movie: action.movie,
+                error: ""
+            }
+        }
+        case SET_ERROR_MOVIE: {
+            return {
+                ...state,
+                errorMovie: action.error
             }
         }
         case FILTER_MOVIES: {
